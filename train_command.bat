@@ -1,0 +1,1 @@
+python train.py --epochs 1 --image_folder data/images --batch_size 1 --data_config_path data/data.config --class_path data/obj.names --checkpoint_dir data/checkpoint

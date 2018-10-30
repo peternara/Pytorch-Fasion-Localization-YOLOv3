@@ -1,0 +1,1 @@
+python detect.py --image_folder data/images/test --weights_path data/checkpoint/2.weights --class_path data/obj.names --output_dir data/output
