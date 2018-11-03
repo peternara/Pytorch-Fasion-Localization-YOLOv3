@@ -35,6 +35,7 @@ parser.add_argument(
     "--checkpoint_dir", type=str, default="checkpoints", help="directory where model checkpoints are saved"
 )
 parser.add_argument("--use_cuda", type=bool, default=True, help="whether to use cuda if available")
+parser.add_argument("--transfer_learning", type=bool, default=False, help="use transfer learning from coco")
 opt = parser.parse_args()
 print(opt)
 
@@ -58,8 +59,10 @@ burn_in = int(hyperparams["burn_in"])
 
 # Initiate model
 model = Darknet(opt.model_config_path)
-model.load_weights(opt.weights_path)
+# model.load_weights(opt.weights_path)
 model.apply(weights_init_normal)
+if opt.transfer_learning:
+    model.load_transfer_weights(opt.weights_path)
 
 if cuda:
     model = model.cuda()
